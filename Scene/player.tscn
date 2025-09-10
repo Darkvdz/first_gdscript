@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://i3w8kcvjgssq"]
+
+[ext_resource type="Script" uid="uid://cxujwhlcse4bk" path="res://Script/player.gd" id="1_kelma"]
+[ext_resource type="Script" uid="uid://cfpp3nsn1w0xo" path="res://Script/camera_3d.gd" id="2_y8w33"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kelma"]
+size = Vector3(0.982544, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y8w33"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kelma"]
+albedo_color = Color(0.361456, 0.275991, 0.086821, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8w33"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xa75v"]
+albedo_color = Color(1, 1, 0.203922, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58ae2"]
+albedo_color = Color(1, 1, 0.337255, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kelma"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8w33"]
+albedo_color = Color(1, 0.6, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y8w33"]
+
+[node name="StaticBody3D" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.333769, 0.146828, -0.0273361)
+
+[node name="Floor" type="CollisionShape3D" parent="."]
+transform = Transform3D(129.28, 0, 0, 0, 0.42, 0, 0, 0, 74.9865, 0, 0, 28.0562)
+shape = SubResource("BoxShape3D_kelma")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(-1.01, 0, 8.74228e-08, 0, 0.47619, 0, -8.8297e-08, 0, -1, -9.14433e-05, 0.168796, -0.00100684)
+mesh = SubResource("BoxMesh_y8w33")
+surface_material_override/0 = SubResource("StandardMaterial3D_kelma")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_y8w33")
+
+[node name="wall1" type="CollisionShape3D" parent="."]
+transform = Transform3D(128.937, 0, 0, 0, -1.83588e-08, 18.5107, 0, -0.42, -8.09128e-07, -0.0559387, 9.18418, -9.13327)
+shape = SubResource("BoxShape3D_kelma")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall1"]
+transform = Transform3D(-1.01, 0, 8.74228e-08, 0, 0.47619, 0, -8.8297e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("BoxMesh_y8w33")
+surface_material_override/0 = SubResource("StandardMaterial3D_xa75v")
+
+[node name="wall2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.00378e-07, -0.42, 0, 9.1596, -1.83588e-08, 0, 0, 0, 18.5107, -9.83609, 15.0199, -0.0258446)
+shape = SubResource("BoxShape3D_kelma")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall2"]
+transform = Transform3D(-0.878259, -1.11022e-16, 8.74228e-08, 1.25056e-12, 0.476191, -1.0842e-19, -7.67798e-08, 0, -1, -0.065914, 0.171793, -0.000565588)
+mesh = SubResource("BoxMesh_y8w33")
+surface_material_override/0 = SubResource("StandardMaterial3D_58ae2")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.999998, -0.00130842, 0.0012202, 0.00130938, 0.999999, -0.000786776, -0.00121917, 0.00078837, 0.999999, 0.00235212, 2.95467, -0.0244076)
+script = ExtResource("1_kelma")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.6134, 0.00683057, -0.00128686, -0.00240825, 1.7373, 0.00111837, 0.00157177, -0.00383828, 0.503918, 0, 0.889442, 0)
+mesh = SubResource("BoxMesh_kelma")
+surface_material_override/0 = SubResource("StandardMaterial3D_y8w33")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.182879, 0)
+shape = SubResource("SphereShape3D_y8w33")
+debug_color = Color(0.81492, 0.365575, 0.48065, 0.42)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(0.999996, -0.00184686, 0.00214175, 0.000766456, 0.905961, 0.42336, -0.00272223, -0.423357, 0.905959, 0.0085057, 20.5466, 22.3806)
+current = true
+fov = 57.3721
+script = ExtResource("2_y8w33")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.0381426, -0.989202, -0.14151, 0.770367, -0.119305, 0.62634, -0.636459, -0.085124, 0.766599, 5.52599, 23.0748, 25.9969)
+light_energy = 50.0
+spot_range = 100.0

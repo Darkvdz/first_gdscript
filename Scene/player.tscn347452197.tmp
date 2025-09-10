@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://i3w8kcvjgssq"]
+
+[ext_resource type="Script" uid="uid://cxujwhlcse4bk" path="res://Script/player.gd" id="1_kelma"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kelma"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y8w33"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kelma"]
+albedo_color = Color(0.837722, 0.965865, 0.842436, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xa75v"]
+albedo_color = Color(1, 1, 0.203922, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58ae2"]
+albedo_color = Color(1, 1, 0.337255, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kelma"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8w33"]
+albedo_color = Color(1, 0.6, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y8w33"]
+
+[node name="StaticBody3D" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.333769, 0.146828, -0.0273361)
+
+[node name="Floor" type="CollisionShape3D" parent="."]
+transform = Transform3D(19.9338, 0, 0, 0, 0.42, 0, 0, 0, 18.5107, 0, 0, 0)
+shape = SubResource("BoxShape3D_kelma")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(-1.01, 0, 8.74228e-08, 0, 0.47619, 0, -8.8297e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("BoxMesh_y8w33")
+surface_material_override/0 = SubResource("StandardMaterial3D_kelma")
+
+[node name="wall1" type="CollisionShape3D" parent="."]
+transform = Transform3D(19.9338, 0, 0, 0, -1.83588e-08, 18.5107, 0, -0.42, -8.09128e-07, -0.0559387, 9.18418, -9.13327)
+shape = SubResource("BoxShape3D_kelma")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall1"]
+transform = Transform3D(-1.01, 0, 8.74228e-08, 0, 0.47619, 0, -8.8297e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("BoxMesh_y8w33")
+surface_material_override/0 = SubResource("StandardMaterial3D_xa75v")
+
+[node name="wall2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-8.71333e-07, -0.42, 0, 19.9338, -1.83588e-08, 0, 0, 0, 18.5107, -9.83422, 10.1982, 0)
+shape = SubResource("BoxShape3D_kelma")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall2"]
+transform = Transform3D(-0.878259, -1.11022e-16, 8.74228e-08, 1.25056e-12, 0.476191, -1.0842e-19, -7.67798e-08, 0, -1, -0.065914, 0.171793, -0.000565588)
+mesh = SubResource("BoxMesh_y8w33")
+surface_material_override/0 = SubResource("StandardMaterial3D_58ae2")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00235212, 0.355365, -0.0244076)
+script = ExtResource("1_kelma")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.617736, 0.00283703, -0.00173727, -0.00371075, 0.471393, 0.00165318, 0.00215006, -0.00154261, 0.501988, 0, 0.889442, 0)
+mesh = SubResource("BoxMesh_kelma")
+surface_material_override/0 = SubResource("StandardMaterial3D_y8w33")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.182879, 0)
+shape = SubResource("SphereShape3D_y8w33")
+debug_color = Color(0.81492, 0.365575, 0.48065, 0.42)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(0.999996, -0.00239021, 0.00176686, 0.00239069, 0.999997, -0.000266919, -0.00176622, 0.000271142, 0.999998, -0.536462, 6.06466, 14.4491)
+fov = 57.3721
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.0381426, -0.989202, -0.14151, 0.770367, -0.119305, 0.62634, -0.636459, -0.085124, 0.766599, 5.52599, 23.0748, 25.9969)
+light_energy = 50.0
+spot_range = 100.0
